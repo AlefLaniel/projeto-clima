@@ -46,9 +46,37 @@ function showInfo(json) {
     document.querySelector('.description').innerHTML = `${json.tempDescription}`;
 
     document.querySelector('.ventoPonto').style.transform = `rotate(${json.windAngle-90}deg)`;
-    document.querySelector('.ventoAngulo').innerHTML = `${json.windAngle}<sup>o</sup>`;
+    document.querySelector('.ventoAngulo').innerHTML = `${json.windAngle}<sup>o</sup> ${orientationAng(json.windAngle)}`;
 
     document.querySelector('.resultado').style.display = 'block';
+}
+
+function orientationAng(angulo) {
+   if((angulo === 0) || (angulo === 360) || (angulo > 0) && (angulo < 45)){
+       return "Norte";
+   }else if((angulo > 315) && (angulo < 360)){
+       return "Norte";
+   }else if ((angulo > 45) && (angulo < 135) || (angulo === 90)){
+       return "Leste";
+   }else if ((angulo === 180) || (angulo > 135) && (angulo < 225)){
+       return "Sul";
+   }else if((angulo === 270) || (angulo > 225) && (angulo < 315)){
+       return "Oeste";
+   } 
+
+   if (angulo === 45) {
+    return "Nordeste";
+   }
+   if (angulo === 135) {
+    return "Sudeste";
+   }
+   if (angulo === 225) {
+    return "Sudoeste";
+   }
+   if (angulo === 315) {
+    return "Noroeste";
+   }
+
 }
 
 function clearInfo() {
